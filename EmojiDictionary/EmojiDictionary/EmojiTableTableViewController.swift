@@ -12,7 +12,7 @@ class EmojiTableTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //cellLayoutMarginsFollowReadableWidth = true
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -55,6 +55,22 @@ class EmojiTableTableViewController: UITableViewController {
         let emoji = emojis[indexPath.row]
         print("\(emoji.symbol)")
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            emojis.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
+        }
+        
+    }
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+
+    }
+    
     
     override func tableView(_ tableView: UITableView, moveRowAt
     fromIndexPath: IndexPath, to: IndexPath) {
