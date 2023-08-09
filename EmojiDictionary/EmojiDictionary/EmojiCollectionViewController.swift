@@ -15,6 +15,7 @@ class EmojiCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         collectionView.setCollectionViewLayout(configureLayout(), animated: false)
+        navigationItem.rightBarButtonItem = editButtonItem
     }
     
     private func configureLayout() -> UICollectionViewLayout {
@@ -39,7 +40,6 @@ class EmojiCollectionViewController: UICollectionViewController {
         return 1
     }
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return emojis.count
     }
@@ -55,5 +55,9 @@ class EmojiCollectionViewController: UICollectionViewController {
     
         return cell
     }
-
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+    }
 }
